@@ -17,21 +17,10 @@ list:
         other: Subseções
 
 article:
-    back:
-        other: Voltar
-
-    tableOfContents:
-        other: Índice
-
-    relatedContent:
-        other: Conteúdo relacionado
-
+    relatedContents:
+        other: Conteúdos Relacionados
     lastUpdatedOn:
         other: Última atualização em
-
-    readingTime:
-        one: "{{ .Count }} minuto de leitura"
-        other: "{{ .Count }} minutos de leitura"
 
 notFound:
     title:

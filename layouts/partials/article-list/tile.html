@@ -10,7 +10,7 @@
                     {{- $Width := $imageRaw.Width -}}
                     {{- $Height := $imageRaw.Height -}}
 
-                    {{- if .context.Site.Params.imageProcessing.cover.enabled -}}
+                    {{- if (default true .Page.Site.Params.imageProcessing.cover.enabled) -}}
                         {{- $thumbnail := $imageRaw.Fill .size -}}
                         {{- $Permalink = $thumbnail.RelPermalink -}}
                         {{- $Width = $thumbnail.Width -}}
@@ -20,9 +20,8 @@
                     <img src="{{ $Permalink }}" 
                         width="{{ $Width }}" 
                         height="{{ $Height }}" 
-                        loading="lazy"
-                        alt="Featured image of post {{ .context.Title }}"
-                        {{ with .context.Slug }}data-key="{{ . }}" {{ end }}
+                        loading="lazy" 
+                        data-key="{{ .context.Slug }}" 
                         data-hash="{{ $imageRaw.Data.Integrity }}">
                 {{ else }}
                     <img src="{{ $image.permalink }}" loading="lazy" data-key="{{ .context.Slug }}" data-hash="{{ $image.permalink }}"/>

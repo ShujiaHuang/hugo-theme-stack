@@ -8,7 +8,7 @@
     {{ $url := urls.Parse $imageValue }}
 
     {{ if or (eq $url.Scheme "http") (eq $url.Scheme "https") }}
-        <!-- Is an external image -->
+        <!-- Is a external image -->
         {{ $result = merge $result (dict "permalink" $imageValue) }}
     {{ else }}
         {{ $pageResourceImage := .Context.Resources.GetMatch (printf "%s" ($imageValue | safeURL)) }}

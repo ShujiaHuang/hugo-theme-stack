@@ -21,16 +21,10 @@ list:
         other: Подразделы
 
 article:
-    back:
-        other: Назад
-    relatedContent:
+    relatedContents:
         other: Также рекомендуем
     lastUpdatedOn:
         other: Обновлено
-    tableOfContents: 
-        other: Содержание
-    readingTime: 
-        other: "Время чтения: {{ .Count }} мин."
 
 notFound:
     title:

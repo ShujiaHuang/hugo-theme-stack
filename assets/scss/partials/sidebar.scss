@@ -1,6 +1,7 @@
 .sidebar {
+    padding: 0 15px;
     &.sticky {
-        @include respond(md) {
+        @media (min-width: ($on-phone + 1)) {
             position: sticky;
         }
     }
@@ -10,87 +11,55 @@
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    align-self: stretch;
-    gap: var(--sidebar-element-separation);
-    max-width: none;
-    width: 100%;
-    position: relative;
 
-    --sidebar-avatar-size: 100px;
-    --sidebar-element-separation: 20px;
-    --emoji-size: 40px;
-    --emoji-font-size: 20px;
+    --sidebar-avatar-size: 150px;
+    --sidebar-element-separation: 25px;
 
-    @include respond(md) {
-        width: auto;
-        padding-top: var(--main-top-padding);
-        padding-bottom: var(--main-top-padding);
-        max-height: 100vh;
+    @media (max-width: $on-desktop-large) {
+        --sidebar-avatar-size: 120px;
+        --sidebar-element-separation: 20px;
     }
 
-    @include respond(2xl) {
-        --sidebar-avatar-size: 120px;
-        --sidebar-element-separation: 25px;
-        --emoji-size: 40px;
+    @media (max-width: $on-phone) {
+        width: 100%;
+        padding: 30px 0;
+        max-width: none;
     }
 
     &.sticky {
         top: 0;
     }
 
-    &.compact {
-        --sidebar-avatar-size: 80px;
-        --emoji-size: 30px;
-        --emoji-font-size: 15px;
-
-        header {
-            @include respond(lg) {
-                flex-direction: row;
-            }
-
-            .site-meta {
-                gap: 5px;
-            }
-
-            .site-name {
-                font-size: 1.4rem;
-
-                @include respond(2xl) {
-                    font-size: 1.75rem;
-                }
-            }
-
-            .site-description {
-                font-size: 1.4rem;
-            }
-        }
+    @media (min-width: $on-phone + 1) {
+        margin-right: 1%;
+        padding: var(--main-top-padding) 15px;
+        max-height: 100vh;
     }
 }
 
 .right-sidebar {
-    width: 100%;
-    display: none;
-    flex-direction: column;
-    gap: var(--widget-separation);
+    flex-shrink: 0;
 
     &.sticky {
         top: 0;
     }
 
-    @include respond(lg) {
+    @media (max-width: $on-desktop - 1) {
+        display: none;
+    }
+
+    @media (min-width: $on-tablet) {
+        margin-left: 1%;
         padding-top: var(--main-top-padding);
     }
 }
 
-.sidebar header {
+.site-info {
     z-index: 1;
     transition: box-shadow 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    gap: var(--sidebar-element-separation);
 
-    @include respond(md) {
-        padding: 0;
+    @media (max-width: $on-phone) {
+        padding: 15px 30px;
     }
 
     .site-avatar {
@@ -98,7 +67,8 @@
         margin: 0;
         width: var(--sidebar-avatar-size);
         height: var(--sidebar-avatar-size);
-        flex-shrink: 0;
+
+        margin-bottom: var(--sidebar-element-separation);
 
         .site-logo {
             width: 100%;
@@ -109,44 +79,58 @@
 
         .emoji {
             position: absolute;
-            width: var(--emoji-size);
-            height: var(--emoji-size);
-            line-height: var(--emoji-size);
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
             border-radius: 100%;
             bottom: 0;
             right: 0;
             text-align: center;
-            font-size: var(--emoji-font-size);
+            font-size: 20px;
             background-color: var(--card-background);
             box-shadow: var(--shadow-l2);
-        }
-    }
 
-    .site-meta {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        justify-content: center;
+            @media (max-width: $on-desktop-large) {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+            }
+        }
     }
 
     .site-name {
         color: var(--accent-color);
+        font-size: 2.4rem;
         margin: 0;
-        font-size: 1.6rem;
 
-        @include respond(2xl) {
-            font-size: 1.8rem;
+        @media (max-width: $on-desktop-large) {
+            font-size: 2rem;
         }
     }
 
     .site-description {
         color: var(--body-text-color);
         font-weight: normal;
-        margin: 0;
-        font-size: 1.4rem;
+        margin: 10px 0;
+        font-size: 1.8rem;
 
-        @include respond(2xl) {
+        @media (max-width: $on-desktop-large) {
             font-size: 1.6rem;
+        }
+    }
+}
+
+.sidebar {
+    .widget {
+        margin-bottom: var(--section-separation);
+
+        &:not(:last-of-type):after {
+            content: "";
+            width: 100px;
+            height: 2px;
+            background-color: var(--body-text-color);
+            display: block;
+            margin-top: var(--section-separation);
         }
     }
 }
@@ -172,27 +156,8 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    gap: var(--menu-icon-separation);
 
     .icon-tabler-toggle-right {
         display: none;
-    }
-}
-
-#i18n-switch {
-    color: var(--body-text-color);
-    display: inline-flex;
-    align-content: center;
-    gap: var(--menu-icon-separation);
-
-    select {
-        border: 0;
-        background-color: transparent;
-        color: var(--body-text-color);
-
-        option {
-            color: var(--card-text-color-main);
-            background-color: var(--card-background);
-        }
     }
 }
